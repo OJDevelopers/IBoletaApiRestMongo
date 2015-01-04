@@ -31,18 +31,18 @@ exports = module.exports = function(app, mongoose) {
 		}
 	},
 	Payment:
-    {
+    [{
     	Type: String,
     	CardNumber: Number,
     	Bank: String
-    },
+    }],
 	InfoControl: 
-    {
+    [{
       UserCreated: String,
       userModified: String,
       DateCreated: Date,
       DateModified: Date
-    }
+    }]
   });
 
   mongoose.model('Users', UsersSchema);
