@@ -1,7 +1,48 @@
 exports = module.exports = function(app, mongoose) {
   var UsersSchema = new mongoose.Schema({
-    NomUsu: String,
-    PassWord: String
+    BasicInfo : 
+    {
+    	Name: String,
+    	LastName: String,
+    	Age: int,
+    	DateBirth: Date
+    },
+    Credentials: 
+    {
+	    NomUsu: String,
+	    PassWord: String
+	},
+	Geo: 
+	{
+		Country: 
+		{
+			code: String, 
+			name: String
+		},
+		City: 
+		{
+			code: String, 
+			name: String
+		},
+		State: 
+		{
+			code: String, 
+			name: String
+		}
+	},
+	Payment:
+    [{
+    	Type: String,
+    	CardNumber: int,
+    	Bank: String
+    }],
+	InfoControl: 
+    [{
+      UserCreated: String,
+      userModified: String,
+      DateCreated: Date,
+      DateModified: Date
+    }]
   });
 
   mongoose.model('Users', UsersSchema);

@@ -11,6 +11,7 @@ var MGuia = mongoose.model('Guia');
   		}
   	});
   };
+  
   //GET - Return a TVShow with specified ID
   exports.findGuiasById = function(req, res) {
     //MGuia.findById(req.param.id, function(err, guia) {

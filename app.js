@@ -19,15 +19,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-var models     = require('./models/Guia')(app, mongoose);
 var MUser     = require('./models/Users')(app, mongoose);
-var GuiasCtrl = require('./Routes/RGuia');
-var UsersCtrl = require('./Routes/RUsers');
+var UsersCtrl = require('./Controllers/CUsers');
 
 
 var router = express.Router();
 router.get('/', function(req, res) {
-  res.send("Server Corriendo...");
+  res.send("Api Rest IBoleta With MongoDB running...");
 });
 
 
@@ -39,28 +37,22 @@ router.use(function(req, res, next) {
 });
 
 // API routes
-var guiasr = express.Router();
-
-guiasr.route('/guia')
-  .get(GuiasCtrl.findAllGuias)
-  .post(GuiasCtrl.addGuia);
-
-guiasr.route('/guia/:id')
-  .get(GuiasCtrl.findGuiasById)
-  .put(GuiasCtrl.updateGuia)
-  .delete(GuiasCtrl.deleteGuia);
-
-guiasr.route('/guiaNumero/:numero')
-  .get(GuiasCtrl.findGuiasByNumero);
-
 var usersr = express.Router();
 
-usersr.route('/user')
-  .get(UsersCtrl.findAllUsers);
+guiasr.route('/user')
+  .get(UsersCtrl.findAllUsers)
+  .post(UsersCtrl.addUser);
 
-app.use('/api', guiasr);
+guiasr.route('/user/:id')
+  .get(UsersCtrl.findUserById)
+  .put(UsersCtrl.updateUser)
+  .delete(UsersCtrl.deleteUser);
+
+guiasr.route('/userNomUsu/:NomUsu')
+  .get(UsersCtrl.findUserByNomUsu);
+
 app.use('/api', usersr);
 
 app.listen(3000, function() {
-  console.log("Node server running on http://localhost:3000");
+  console.log("Node server running on http://localhost:3000. Server of IBoleta With MongoDB");
 });
