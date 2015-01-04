@@ -39,16 +39,16 @@ router.use(function(req, res, next) {
 // API routes
 var usersr = express.Router();
 
-guiasr.route('/user')
+usersr.route('/user')
   .get(UsersCtrl.findAllUsers)
   .post(UsersCtrl.addUser);
 
-guiasr.route('/user/:id')
+usersr.route('/user/:id')
   .get(UsersCtrl.findUserById)
   .put(UsersCtrl.updateUser)
   .delete(UsersCtrl.deleteUser);
 
-guiasr.route('/userNomUsu/:NomUsu')
+usersr.route('/userNomUsu/:NomUsu')
   .get(UsersCtrl.findUserByNomUsu);
 
 app.use('/api', usersr);

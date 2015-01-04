@@ -4,7 +4,7 @@ exports = module.exports = function(app, mongoose) {
     {
     	Name: String,
     	LastName: String,
-    	Age: int,
+    	Age: Number,
     	DateBirth: Date
     },
     Credentials: 
@@ -33,7 +33,7 @@ exports = module.exports = function(app, mongoose) {
 	Payment:
     [{
     	Type: String,
-    	CardNumber: int,
+    	CardNumber: Number,
     	Bank: String
     }],
 	InfoControl: 

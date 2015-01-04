@@ -28,7 +28,7 @@ var Users = mongoose.model('Users');
   //GET - Return a User with specified UserName
   exports.findUserByNomUsu = function(req, res) {
     //Users.findById(req.param.id, function(err, guia) {
-      Users.find({Credentials.NomUsu:req.params.NomUsu},function(err, guia) {
+      Users.find({NomUsu:req.params.NomUsu},function(err, guia) {
       console.log(req.params);
       if(!err) {
         res.send(guia);
@@ -93,20 +93,20 @@ var Users = mongoose.model('Users');
   exports.updateUser = function(req, res)
   {
     Users.findById(req.params.id, function(err, user) {
-      user.BasicInfo.Name: req.body.BasicInfo.Name,
-      user.BasicInfo.LastName: req.body.BasicInfo.LastName,
-      user.BasicInfo.Age: req.body.BasicInfo.Age,
-      user.BasicInfo.DateBirth: req.body.BasicInfo.DateBirth
-      user.Credentials.NomUsu: req.body.Credentials.NomUsu,
-      user.Credentials.PassWord: req.body.Credentials.PassWord
-      user.Geo.Country.code: req.body.Geo.Country.code, 
-      user.Geo.Country.name: req.body.Geo.Country.name
-      user.Geo.City.code: req.body.Geo.City.code, 
-      user.Geo.City.name: req.body.Geo.City.name
-      user.Geo.State.code: req.body.Geo.State.code, 
-      user.Geo.State.name: req.body.Geo.State.name
-      user.Payment: req.body.Payment,
-      user.InfoControl: req.body.Payment
+      user.BasicInfo.Name = req.body.BasicInfo.Name,
+      user.BasicInfo.LastName = req.body.BasicInfo.LastName,
+      user.BasicInfo.Age = req.body.BasicInfo.Age,
+      user.BasicInfo.DateBirth = req.body.BasicInfo.DateBirth
+      user.Credentials.NomUsu = req.body.Credentials.NomUsu,
+      user.Credentials.PassWord = req.body.Credentials.PassWord
+      user.Geo.Country.code = req.body.Geo.Country.code, 
+      user.Geo.Country.name = req.body.Geo.Country.name
+      user.Geo.City.code = req.body.Geo.City.code, 
+      user.Geo.City.name = req.body.Geo.City.name
+      user.Geo.State.code = req.body.Geo.State.code, 
+      user.Geo.State.name = req.body.Geo.State.name
+      user.Payment = req.body.Payment,
+      user.InfoControl = req.body.Payment
 
       user.save(function(err) {
         if(!err) 
