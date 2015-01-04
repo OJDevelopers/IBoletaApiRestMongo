@@ -54,5 +54,5 @@ guiasr.route('/userNomUsu/:NomUsu')
 app.use('/api', usersr);
 
 app.listen(3000, function() {
-  console.log("Node server running on http://localhost:3000. Server of IBoleta With MongoDB");
+  console.log("Node server running on http://localhost:3000. Server IBoleta With MongoDB");
 });
