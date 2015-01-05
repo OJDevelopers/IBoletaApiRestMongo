@@ -43,50 +43,58 @@ var Users = mongoose.model('Users');
     console.log('POST');
     console.log(req.body);
 
-    var user = new Users({
-      BasicInfo : 
-      {
-        Name: req.body.BasicInfo.Name,
-        LastName: req.body.BasicInfo.LastName,
-        Age: req.body.BasicInfo.Age,
-        DateBirth: req.body.BasicInfo.DateBirth
-      },
-      Credentials: 
-      {
-        NomUsu: req.body.Credentials.NomUsu,
-        PassWord: req.body.Credentials.PassWord
-      },
-      Geo: 
-      {
-        Country: 
+    try
+    {
+      var user = new Users({
+        BasicInfo : 
         {
-          code: req.body.Geo.Country.code, 
-          name: req.body.Geo.Country.name
+          Name: req.body.BasicInfo.Name,
+          LastName: req.body.BasicInfo.LastName,
+          Age: req.body.BasicInfo.Age,
+          DateBirth: req.body.BasicInfo.DateBirth
         },
-        City: 
+        Credentials: 
         {
-          code: req.body.Geo.City.code, 
-          name: req.body.Geo.City.name
+          NomUsu: req.body.Credentials.NomUsu,
+          PassWord: req.body.Credentials.PassWord
         },
-        State: 
+        Geo: 
         {
-          code: req.body.Geo.State.code, 
-          name: req.body.Geo.State.name
+          Country: 
+          {
+            code: req.body.Geo.Country.code, 
+            name: req.body.Geo.Country.name
+          },
+          City: 
+          {
+            code: req.body.Geo.City.code, 
+            name: req.body.Geo.City.name
+          },
+          State: 
+          {
+            code: req.body.Geo.State.code, 
+            name: req.body.Geo.State.name
+          }
+        },
+        Payment: req.body.Payment,
+        InfoControl: req.body.InfoControl
+      });
+
+      user.save(function(err) {
+        if(!err) {
+          console.log('User "'+ req.body.BasicInfo.Name +'" Created Succefull');
+        } else {
+          console.log('ERROR: ' + err);
         }
-      },
-      Payment: req.body.Payment,
-      InfoControl: req.body.Payment
-    });
+      });
 
-    user.save(function(err) {
-      if(!err) {
-        console.log('User "'+ req.body.BasicInfo.Name +'" Created Succefull');
-      } else {
-        console.log('ERROR: ' + err);
-      }
-    });
-
-    res.send(user);
+      res.send(user);
+    }
+    catch(error)
+    {
+      console.log(error);
+    }
+    
   };
 
   //PUT - Update a User already exists
