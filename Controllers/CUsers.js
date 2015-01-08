@@ -16,9 +16,9 @@ var Users = mongoose.model('Users');
 
   //GET - Return a User with specified ID
   exports.findUserById = function(req, res) {
-      Users.findById(req.params.id,function(err, guia) {
+      Users.findById(req.params.id,function(err, user) {
       if(!err) {
-        res.send(guia);
+        res.send(user);
       } else {
         console.log('ERROR: ' + err);
       }
@@ -28,10 +28,10 @@ var Users = mongoose.model('Users');
   //GET - Return a User with specified UserName
   exports.findUserByNomUsu = function(req, res) {
     //Users.findById(req.param.id, function(err, guia) {
-      Users.find({NomUsu:req.params.NomUsu},function(err, guia) {
+      Users.find({NomUsu:req.params.NomUsu},function(err, user) {
       console.log(req.params);
       if(!err) {
-        res.send(guia);
+        res.send(user);
       } else {
         console.log('ERROR: ' + err);
       }

@@ -21,6 +21,9 @@ app.use(methodOverride());
 
 var MUser     = require('./models/Users')(app, mongoose);
 var UsersCtrl = require('./Controllers/CUsers');
+var MTEvent     = require('./models/EventType')(app, mongoose);
+var TEventCtrl = require('./Controllers/CEventType');
+
 
 
 var router = express.Router();
@@ -39,6 +42,7 @@ router.use(function(req, res, next) {
 // API routes
 var usersr = express.Router();
 
+//---------Users--------------//
 usersr.route('/user')
   .get(UsersCtrl.findAllUsers)
   .post(UsersCtrl.addUser);
@@ -50,6 +54,20 @@ usersr.route('/user/:id')
 
 usersr.route('/userNomUsu/:NomUsu')
   .get(UsersCtrl.findUserByNomUsu);
+
+//------------Event Type-----------//
+
+var teventr = express.Router();
+
+teventr.route('/user')
+  .get(TEventCtrl.findAllTEvents)
+  .post(TEventCtrl.addTEvents);
+
+teventr.route('/user/:id')
+  .get(TEventCtrl.findTEventsById)
+  .put(TEventCtrl.updateTEvent)
+  .delete(TEventCtrl.deleteTEvent);
+
 
 app.use('/api', usersr);
 var Port = process.env.PORT || 8888;
