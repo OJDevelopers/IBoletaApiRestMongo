@@ -59,11 +59,11 @@ usersr.route('/userNomUsu/:NomUsu')
 
 var teventr = express.Router();
 
-teventr.route('/user')
+teventr.route('/tevent')
   .get(TEventCtrl.findAllTEvents)
-  .post(TEventCtrl.addTEvents);
+  .post(TEventCtrl.addTEvents);tevent
 
-teventr.route('/user/:id')
+teventr.route('/tevent/:id')
   .get(TEventCtrl.findTEventsById)
   .put(TEventCtrl.updateTEvent)
   .delete(TEventCtrl.deleteTEvent);
