@@ -55,6 +55,7 @@ var TEvent = mongoose.model('EventType');
           DateCreated: req.body.InfoControl.DateCreated,
           DateModified: req.body.InfoControl.DateModified
         }]
+      });
 
       tevent.save(function(err) {
         if(!err) {
