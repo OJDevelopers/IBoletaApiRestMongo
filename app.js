@@ -42,7 +42,7 @@ router.use(function(req, res, next) {
 // API routes
 var usersr = express.Router();
 
-//---------Users--------------//
+//---------Inicio rutas Users--------------//
 usersr.route('/user')
   .get(UsersCtrl.findAllUsers)
   .post(UsersCtrl.addUser);
@@ -54,19 +54,20 @@ usersr.route('/user/:id')
 
 usersr.route('/userNomUsu/:NomUsu')
   .get(UsersCtrl.findUserByNomUsu);
+//----------Fin rutas Users-------------------//
 
-//------------Event Type-----------//
-
+//------------Inicio rutas Event Type-----------//
 var teventr = express.Router();
 
 teventr.route('/tevent')
   .get(TEventCtrl.findAllTEvents)
-  .post(TEventCtrl.addTEvents);tevent
+  .post(TEventCtrl.addTEvents);
 
 teventr.route('/tevent/:id')
   .get(TEventCtrl.findTEventsById)
   .put(TEventCtrl.updateTEvent)
   .delete(TEventCtrl.deleteTEvent);
+//-------------Fin rutas Event Type----------------//
 
 
 app.use('/api', usersr);
