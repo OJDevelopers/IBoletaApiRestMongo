@@ -71,6 +71,7 @@ teventr.route('/tevent/:id')
 
 
 app.use('/api', usersr);
+app.use('/api',teventr);
 var Port = process.env.PORT || 8888;
 app.listen(Port, function() {
   console.log("Node server running on http://localhost:3000. Server IBoleta With MongoDB");
