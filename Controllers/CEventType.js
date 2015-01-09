@@ -4,7 +4,7 @@ var TEvent = mongoose.model('EventType');
   //GET - Return all Users in the DB
   exports.findAllTEvents = function(req, res) {
   	console.log(TEvent);
-  	Users.find(function(err, tevent) {
+  	TEvent.find(function(err, tevent) {
   		console.log(tevent);
   		if(!err) {
   			res.send(tevent);

@@ -21,8 +21,10 @@ app.use(methodOverride());
 
 var MUser     = require('./models/Users')(app, mongoose);
 var UsersCtrl = require('./Controllers/CUsers');
-var MTEvent     = require('./models/EventType')(app, mongoose);
+var MTEvent = require('./models/EventType')(app, mongoose);
 var TEventCtrl = require('./Controllers/CEventType');
+var MGeography = require('./models/Geography')(app, mongoose);
+var GeographyCtrl = require('./Controllers/CGeography');
 
 
 
@@ -69,9 +71,32 @@ teventr.route('/tevent/:id')
   .delete(TEventCtrl.deleteTEvent);
 //-------------Fin rutas Event Type----------------//
 
+//------------Inicio rutas Event Type-----------//
+var geography = express.Router();
+
+geography.route('/geography')
+  .get(GeographyCtrl.findAllGeography)
+  .post(GeographyCtrl.addGeography);
+
+geography.route('/geography/Cities')
+  .get(GeographyCtrl.findAllCities);
+
+geography.route('/geography/Countries')
+  .get(GeographyCtrl.findAllCountries);
+
+geography.route('/geography/StateProvince')
+  .get(GeographyCtrl.findAllStateProvince);
+
+geography.route('/geography/:id')
+  .get(GeographyCtrl.findGeographyById)
+  .put(GeographyCtrl.updateGeography)
+  .delete(GeographyCtrl.deleteTEvent);
+//-------------Fin rutas Event Type----------------//
 
 app.use('/api', usersr);
 app.use('/api',teventr);
+app.use('/api',geography);
+
 var Port = process.env.PORT || 8888;
 app.listen(Port, function() {
   console.log("Node server running on http://localhost:3000. Server IBoleta With MongoDB");

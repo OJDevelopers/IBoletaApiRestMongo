@@ -6,6 +6,7 @@ exports = module.exports = function(app, mongoose) {
     NameStateProvince: String,
     CodeCountry: String,
     nameCountry: String,
+    Type: String,
     InfoControl: 
     [{
       UserCreated: String,
