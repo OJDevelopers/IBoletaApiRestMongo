@@ -25,12 +25,14 @@ var MTEvent = require('./models/EventType')(app, mongoose);
 var TEventCtrl = require('./Controllers/CEventType');
 var MGeography = require('./models/Geography')(app, mongoose);
 var GeographyCtrl = require('./Controllers/CGeography');
+var MTPayment = require('./models/PaymentType')(app, mongoose);
+var TPaymentCtrl = require('./Controllers/CPaymentType');
 
 
 
 var router = express.Router();
 router.get('/', function(req, res) {
-  res.send("Api Rest IBoleta With MongoDB running...");
+  res.send("<h1>Api Rest IBoleta With MongoDB running...</h1>");
 });
 
 
@@ -71,7 +73,7 @@ teventr.route('/tevent/:id')
   .delete(TEventCtrl.deleteTEvent);
 //-------------Fin rutas Event Type----------------//
 
-//------------Inicio rutas Event Type-----------//
+//------------Inicio rutas Geography-----------//
 var geography = express.Router();
 
 geography.route('/geography')
@@ -91,11 +93,25 @@ geography.route('/geography/:id')
   .get(GeographyCtrl.findGeographyById)
   .put(GeographyCtrl.updateGeography)
   .delete(GeographyCtrl.deleteTEvent);
-//-------------Fin rutas Event Type----------------//
+//-------------Fin rutas Geography----------------//
+
+//------------Inicio rutas Geography-----------//
+var tpayment = express.Router();
+
+tpayment.route('/tpayment')
+  .get(TPaymentCtrl.findAllTPayment)
+  .post(TPaymentCtrl.addTPayment);
+
+tpayment.route('/tpayment/:id')
+  .get(TPaymentCtrl.findTPaymentById)
+  .put(TPaymentCtrl.updateTPayment)
+  .delete(TPaymentCtrl.deleteTPayment);
+//-------------Fin rutas Geography----------------//
 
 app.use('/api', usersr);
 app.use('/api',teventr);
 app.use('/api',geography);
+app.use('/api',tpayment);
 
 var Port = process.env.PORT || 8888;
 app.listen(Port, function() {
