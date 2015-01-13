@@ -36,7 +36,8 @@ exports = module.exports = function(app, mongoose) {
       },
       EventDate: Date,
       TicketNumber: int,
-      TicketsType: String
+      TicketsType: String,
+      Place: String
     }
     EventType: String,
     Favorite: boolean //Cambiar Favorito por Destacado

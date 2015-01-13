@@ -27,6 +27,10 @@ var MGeography = require('./models/Geography')(app, mongoose);
 var GeographyCtrl = require('./Controllers/CGeography');
 var MTPayment = require('./models/PaymentType')(app, mongoose);
 var TPaymentCtrl = require('./Controllers/CPaymentType');
+var MTTicket = require('./models/TicketType')(app, mongoose);
+var TTicketCtrl = require('./Controllers/CTicketType');
+var MPlaces = require('./models/Places')(app, mongoose);
+var PlacesCtrl = require('./Controllers/CPlaces');
 
 
 
@@ -95,7 +99,7 @@ geography.route('/geography/:id')
   .delete(GeographyCtrl.deleteTEvent);
 //-------------Fin rutas Geography----------------//
 
-//------------Inicio rutas Geography-----------//
+//------------Inicio rutas Payment Type-----------//
 var tpayment = express.Router();
 
 tpayment.route('/tpayment')
@@ -106,12 +110,39 @@ tpayment.route('/tpayment/:id')
   .get(TPaymentCtrl.findTPaymentById)
   .put(TPaymentCtrl.updateTPayment)
   .delete(TPaymentCtrl.deleteTPayment);
-//-------------Fin rutas Geography----------------//
+//-------------Fin rutas Payment Type----------------//
+
+//------------Inicio rutas Ticket Type-----------//
+var tticket = express.Router();
+
+tticket.route('/tticket')
+  .get(TTicketCtrl.findAllTTicket)
+  .post(TTicketCtrl.addTTicket);
+
+tticket.route('/tticket/:id')
+  .get(TTicketCtrl.findTTicketById)
+  .put(TTicketCtrl.updateTTicket)
+  .delete(TTicketCtrl.deleteTTicket);
+//-------------Fin rutas Ticket Type----------------//
+
+//------------Inicio rutas Ticket Type-----------//
+var places = express.Router();
+
+places.route('/tticket')
+  .get(PlacesCtrl.findAllPlaces)
+  .post(PlacesCtrl.addplaces);
+
+places.route('/tticket/:id')
+  .get(PlacesCtrl.findplacesById)
+  .put(PlacesCtrl.updateplaces)
+  .delete(PlacesCtrl.deleteplaces);
+//-------------Fin rutas Ticket Type----------------//
 
 app.use('/api', usersr);
 app.use('/api',teventr);
 app.use('/api',geography);
-app.use('/api',tpayment);
+app.use('/api',tticket);
+app.use('/api',places);
 
 var Port = process.env.PORT || 8888;
 app.listen(Port, function() {
